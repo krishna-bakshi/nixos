@@ -7,6 +7,8 @@
       ./hardware-configuration.nix
       ./packages.nix
       ./niri.nix
+
+
   ];
 
   hardware.bluetooth = {
@@ -16,21 +18,20 @@
 
 
   # Trying to fix the crash happening when kate tries to show a file picker
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.kdePackages.xdg-desktop-portal-kde
-      pkgs.xdg-desktop-portal-gtk
-    ];
-    config.common.default = "*";
-  };
-
+  ## ---> Started using "rofi -show drun" which did not crash kate when trying to open a file. only dms application launcher did it.
+  #environment.sessionVariables = {
+  #  QT_USE_PORTAL = "0";
+  #};
+  
 
   # Ensure Qt applications integrate smoothly with your desktop
   qt = {
     enable = true;
-    #platformTheme = "qt5ct"; # or "kde" if you are on Plasma
+  #platformTheme = "qt5ct"; # or "kde" if you are on Plasma
   };
+
+  # try switching Waydroid to its nftables-compatible package
+  virtualisation.waydroid.package = pkgs.waydroid-nftables;
 
 
   networking.hostName = "l490-kr"; # Define your hostname.

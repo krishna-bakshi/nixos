@@ -13,7 +13,11 @@
 
 
   # For apps that require authentication
-  security.polkit.enable = true; # Security Guard
+  security.polkit = {
+    enable = true;
+    adminIdentities = [ "unix-user:ThePenguin" ];
+  };
+
   services.gnome.gnome-keyring.enable = true; # secret service
   
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
@@ -30,7 +34,7 @@
       };
     };
 
-  programs.dms-shell = {
+  programs.dux-shell = {
     enable = true;
 
     systemd = {
@@ -50,7 +54,7 @@
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite # Highly Recommended, xwayland support
-
+    brightnessctl
     polkit_gnome
   ];
 }

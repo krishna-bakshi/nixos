@@ -4,6 +4,7 @@
   inputs = {
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
@@ -29,6 +30,7 @@
           ./configuration.nix
           ./packages.nix
 
+          inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.dux-greeter.nixosModules.default
           # inputs.dux-files.homeModules.default
           ./niri.nix
@@ -37,3 +39,4 @@
     };
   };
 }
+
